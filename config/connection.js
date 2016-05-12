@@ -13,10 +13,10 @@ var source = {
 	},
 	heroku: {
 		port: 3306,
-		host: 'l9dwvv6j64hlhpul.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-		database: 'i0iuqapufsqpar1r',
-		user: 'xqsognnmdnhkwsod',
-		password: 'asqkg3pcf7nf9w7m'
+		host: 'bqmayq5x95g1sgr9.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+		database: 'cl3hbda4cq8olylg',
+		user: 'jdww3s7ownjjnmpu',
+		password: 'emno5650wwmfugn7'
 	}
 }
 
