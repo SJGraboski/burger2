@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SJGraboski/burger.git"
+    "url": "git+https://github.com/SJGraboski/burger2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SJGraboski/burger/issues"
+    "url": "https://github.com/SJGraboski/burger2/issues"
   },
-  "homepage": "https://github.com/SJGraboski/burger#readme",
+  "homepage": "https://github.com/SJGraboski/burger2#readme",
   "dependencies": {
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
