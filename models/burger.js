@@ -1,32 +1,32 @@
-// require the orm
-var orm = require('../config/orm.js');
+// require Sequelize
+var Sequelize = require('sequelize');
+// make sequelize object using connection export
+var sequelize = require('../config/connection.js');
 
-// make burger functions
-var burger = {
-	// code populates left side with uneaten burger info
-	uneatenDis: function (callback) {
-		orm.getUneaten(function(data){
-			callback(data);
-		})
+// make burger model
+var Burger = sequelize.define("burger", {
+	id: {
+		type: Sequelize.INTEGER,
+		autoIncrement: true,
+		primaryKey: true
 	},
-
-	// code populates right side with uneaten burger info
-	eatenDis: function(callback) {
-		orm.getEaten(function(data){
-			callback(data);
-		})
+	burger_name: {
+		type: Sequelize.STRING,
 	},
-
-	// code makes a burger
-	addNew: function(burger) {
-		orm.addBurger(burger);
+	devoured: {
+		type: Sequelize.BOOLEAN
 	},
-
-	// code sets burger to eaten
-	eatOne: function(burger) {
-		orm.eatBurger(burger);
+	date: {
+		type: Sequelize.DATE
 	}
-}
+},
+{
+	// make it so it doesn't automatically make dates
+	timestamps: false
+});
+
+// sync with DB
+Burger.sync();
 
 // export burger functions
-module.exports = burger;
+module.exports = Burger;

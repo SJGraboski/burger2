@@ -1,5 +1,6 @@
 // require mysql
 var mysql = require('mysql');
+var Sequelize = require('sequelize');
 
 // specify connection
 var source = {
@@ -19,16 +20,22 @@ var source = {
 	}
 }
 
-var connection = mysql.createConnection(source.heroku);
+// select the connection we'll use
+var bonafide = source.heroku;
 
-// make the connection
-connection.connect(function(err) {
-    if (err) {
-        console.error('error connecting: ' + err.stack);
-        return;
-    }
-    console.log('connected as id ' + connection.threadId);
-});
+// connect the source to sequelize
+var sequelize = new Sequelize(bonafide.database, bonafide.user, bonafide.password, {
+	host: bonafide.host,
+	dialect: 'mysql',
+
+	pool: {
+		min: 0,
+		max: 5,
+		idle: 10000
+	}
+
+})
+
 
 // export connection to whatever requires this file
-module.exports = connection;
+module.exports = sequelize;

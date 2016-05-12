@@ -1,8 +1,8 @@
 // require express
 var express = require('express');
 
-// bring in the functions from the model
-var burger = require('../models/burger.js');
+// bring in the model
+var Burger = require('../models/burger.js');
 
 // Routes
 module.exports = function(app) {
@@ -10,35 +10,59 @@ module.exports = function(app) {
 	// ===========
 	// uneaten burgers
 	app.get("/api/uneaten", function(req, res) {
-		burger.uneatenDis(function(data) {
-			// display as json
-			res.json(data);
-		});
-	})
+		Burger.findAll({
+			where: {
+				devoured: {
+					$not: true
+				}
+			}
+		}).then(function(result){
+			res.json(result);
+		})
+	}),
 
 	// eaten burger
 	app.get("/api/eaten", function(req, res) {
-		burger.eatenDis(function(data) {
-			//display as json
-			res.json(data);
-		});
-	})
+		Burger.findAll({
+			where: {
+				devoured: true
+			}
+		}).then(function(result){
+			res.json(result);
+		})
+	}),
+
 
 	// add a burger
 	app.post("/api/add", function(req, res) {
 		// grab the burger obj from the post
 		var newBurger = req.body;
-		// grab the burger's name
-		burger.addNew(newBurger.name);
-	})
+		// make a new burger
+		Burger.create({
+			burger_name: newBurger.name,
+			devoured: false,
+			date: new Date()
+		}).then(function(result){
+			res.end("{'success' : 'Updated Successfully', 'status' : 200}");
+		})
+	}),
 
 	// eat a burger
 	app.put("/api/eat", function(req, res) {
 		// grab the burger obj from the put
 		var eatBurger = req.body;
 		// eat the burger
-		burger.eatOne(eatBurger.name);
-	})
+		Burger.update({
+			devoured: true
+		},
+		{
+			where: {
+				burger_name: eatBurger.name
+			}
+		}).then(function(result){
+			res.end("{'success' : 'Updated Successfully', 'status' : 200}");
+		})
+	}),
 
 	// HTML ROUTES
 	// ===========

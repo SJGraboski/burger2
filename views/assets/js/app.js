@@ -32,7 +32,7 @@ function leftside(){
 // function adds a burger
 function addBurger(){
 	// first we need to grab the text in the input field
-	var data = {name:$('#addBurg').val().trim()};
+	var data = {'name': ($('#addBurg').val().trim())};
 	// kill the function if data is nothing
 	if (!data) {
 		return false;
@@ -42,11 +42,10 @@ function addBurger(){
 		$('#addBurg').val('');
 	}
 	// and let's continue by making the ajax call
-	$.ajax({
-		method: "POST",
-		url: "api/add",
-		data: data
-	});
+	$.post("api/add", data)
+	.done(function(data){
+		leftside();
+	})
 }
 
 // function for loading the information for the left side
@@ -79,12 +78,15 @@ function rightside(){
 // eat a burger
 function eatBurger(burger) {
 	// set up data
-	var data = {name:burger};
+	var data = {"name": burger};
 	// make ajax call
 	$.ajax({
 		method: "PUT",
 		url: "api/eat",
 		data: data
+	}).done(function(data){
+		leftside();
+		rightside();
 	});
 }
 
@@ -98,15 +100,11 @@ $(document).ready(function(){
 // when we press the add button
 $(document).on("click", "#addIt", function(){
 	addBurger();
-	leftside();
 	return false;
 })
 
 // when we press one of the eat buttons;
 $(document).on("click", ".eatBurger", function(){
 	eatBurger($(this).attr('data-name'));
-	leftside();
-	rightside();
-	return false;
 })
 
