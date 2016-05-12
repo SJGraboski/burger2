@@ -1,0 +1,38 @@
+/* basic rules */
+h1 {
+	text-align: center;
+}
+
+h2 {
+	text-align: center;
+}
+
+h3 {
+	border-bottom: 1px solid #c2c2c2;
+	text-align:center;
+}
+
+/* left and right side rules */
+#leftside p {
+	margin-bottom:0px;
+	text-align:center;
+}
+
+#rightside p {
+	margin: 10px 0 10px 0;
+	text-align:center;
+}
+
+#leftside button {
+	display: block;
+	margin: 0 auto 15px auto;
+}
+
+/* center rules */
+div.form-group {
+	margin: 15px auto 10px auto;
+}
+#addIt {
+	display: block;
+	margin: 0 auto;
+}
