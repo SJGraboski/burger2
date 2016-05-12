@@ -39,5 +39,5 @@ app.set('view engine', 'handlebars');
 require("./controllers/burgers_controller.js")(app)
 
 // start server
-var PORT = process.env.PORT || 3000;
-app.listen(PORT);
+app.listen(process.env.PORT || 3000, 
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env));
