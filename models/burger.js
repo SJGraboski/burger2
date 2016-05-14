@@ -19,7 +19,7 @@ var Burger = sequelize.define("burger", {
 	date: {
 		type: Sequelize.DATE
 	}
-}
+})
 
 // sync with DB
 Burger.sync();
