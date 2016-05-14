@@ -19,6 +19,8 @@ var Burger = sequelize.define("burger", {
 	date: {
 		type: Sequelize.DATE
 	}
+}, {
+		timestamps: false
 })
 
 // sync with DB
