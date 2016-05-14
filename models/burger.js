@@ -19,11 +19,7 @@ var Burger = sequelize.define("burger", {
 	date: {
 		type: Sequelize.DATE
 	}
-},
-{
-	// make it so it doesn't automatically make dates
-	timestamps: false
-});
+}
 
 // sync with DB
 Burger.sync();
